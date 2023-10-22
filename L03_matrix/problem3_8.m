@@ -6,15 +6,14 @@ N = length(mosquito);
 
 mixed = elephant+mosquito;
 
-% Transformacja liniowa/ortogonalna - ANALIZA
 n=0:N-1; k=0:N-1;
-A = sqrt(2/N)*cos( pi/N *(k'*n));
+A = sqrt(2/N)*cos( pi/N *(k'*n));	$ortogonalna macierz cosinosow
 %x = A(500,:) + A(1000,:); x = x’;
 y = A*mixed;
 figure; plot(y); title('y1(k)');
 
 % Modyfikacja wyniku
-s = 1700;
+s = 1700;						%potestowac ile najlepiej uciąć
 e = length(mixed) - 10000;
 y(s:e,1) = zeros(e-s+1,1);
 figure; plot(y); title('y2(k)');

@@ -2,8 +2,8 @@
 clear all; close all;
 
 % Parametry
-M = 3;           % liczba wag systemu/ukladu/kanalu 4
-w = 1:M;         % wagi 2:M+2
+M = 4;           % liczba wag systemu/ukladu/kanalu 4
+w = 2:M+2;         % wagi 2:M+2
 N = M+(M-1);     % dlugosc sygnalu niezbedna do identyfikacji wag
 p = rand(1,N);   % wejscie - probki pilota 2
 y = conv(p,w);   % wejscie p(n) --> wyjscie y(n): splot wejscia z wagami ukladu
