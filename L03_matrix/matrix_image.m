@@ -32,7 +32,7 @@ subplot(122); imshow(img2); title('Zsyntezowany obraz'); pause
 maxim = max(max(wsp));              % najwiekszy wspolczynnik
 figure;
 % subplot(121); imshow(img); title('Input image'); 
-for k = -16 : 0
+for k = -16 : 0 % k = -12 - zauwazalna roznica
     k                               % wartosc zmieniana w petli
     threshold = 2^k * maxim,        % obliczony prog
     c = wsp;                        % oryginalne wsp. DCT
