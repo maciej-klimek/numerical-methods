@@ -1,10 +1,10 @@
 [elephant_signal,fpr]=audioread('elephant.wav',[1,2^14]);
-N = length(elephant_singal);
+N = length(elephant_signal);
 
 [mosquito_signal,fpr1]=audioread('mosquito.wav',[1,2^14]);
 N = length(mosquito_signal);
 
-mixed_signal = elephant_singal+mosquito_signal;
+mixed_signal = elephant_signal+mosquito_signal;
 
 % Stworzenie macierzy ortogonalnych cosinosow
 n=0:N-1; k=0:N-1;

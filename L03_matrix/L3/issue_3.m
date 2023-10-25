@@ -1,0 +1,24 @@
+clear all;
+close all;
+clc;
+
+% matrix_obwod_dc.m
+ze = 10; zs1 = 20; zs2 = 30; z0 = 40; zd = 10;
+E1 = 1; E2 = 0; E3 = 0;
+A = [ 1/ze+1/zs1, -1/zs1, 0; ...
+-1/zs1, 1/zs1+1/zs2+1/zd, -1/zs2; ...
+0, -1/zs2, 1/zs2+1/z0 ],
+b = [ E1/ze; ...
+    0; ...
+0 ],
+% x = ?
+x1 = inv(A)*b; % inv(A) = A^(-1)
+x2 = pinv(A)*b; % pinv(A) = (A^T * A)^(-1) * A^T
+x3 = A \ b; % minimaliacja bledu sredniokwadratowego
+% Metoda Cramera
+for k=1:length(b)
+Ak = A; Ak(:,k) = b; % (w,k) = (:,k)
+x4(k) = det( Ak ) / det(A);
+end
+x4 = x4.';
+[ x1, x2, x3, x4 ]
