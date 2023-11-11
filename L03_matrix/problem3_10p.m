@@ -1,8 +1,7 @@
 close all;
 clear all;
 clc;
-
-babiaGora = load('babia_gora.dat');
+babiaGora = load('sample_terrain.dat');
 
 syms yaw pitch roll;
 
@@ -15,7 +14,7 @@ A = Rz * Ry * Rx;
 
 for d=0:180
 
-    myPlot(babiaGora * rotationMatrix(A, d,0,0, yaw, pitch, roll)); pause(0.1);
+    myPlot(babiaGora * rotationMatrix(A, 0,d,0, yaw, pitch, roll)); pause(0.1);
 
 end
 

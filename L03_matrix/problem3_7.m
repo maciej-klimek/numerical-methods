@@ -1,5 +1,3 @@
-
-% matrix_transform.m
 clear all; close all;
 
 % Dane wejsciowe
@@ -7,24 +5,24 @@ clear all; close all;
 N = length(x);
 figure; plot(x); title('x(n)');
 
-% Transformacja liniowa/ortogonalna - ANALIZA
+% Transformacja liniowa/ortogonalna
 n=0:N-1; k=0:N-1;
 A = sqrt(2/N)*cos( pi/N *(k'*n));
-%x = A(500,:) + A(1000,:); x = x';
-y = A*x; %widmo sygnału
+% x = A(500,:) + A(1000,:); x = x';
+y = A*x; % --> widmo sygnału
 figure; plot(y); title('y(k)');
+
 
 % Modyfikacja wyniku
 
-% od = 3000;
-% do = length(x) - 1000;
-% y(od:do,1) = zeros(do-od+1,1);
+od = 3000;
+do = length(x) - 1000;
+y(od:do,1) = zeros(do-od+1,1);
 
-% y = A(500,:) + A(1000,:);
-
-% y(1000) = 0;
+y(1000) = 0;
 
 figure; plot(y); title('y(k)');
+
 
 % Transformacja odwrotna - SYNTEZA
 xback = A'*y;

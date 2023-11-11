@@ -1,3 +1,5 @@
+close all; clear all; clc;
+
 [elephant,fpr]=audioread('elephant.wav',[1,2^14]);
 N = length(elephant);
 
@@ -9,15 +11,16 @@ mixed = elephant+mosquito;
 % Macierz ortogonalna cosinosow
 n=0:N-1; k=0:N-1;
 A = sqrt(2/N)*cos( pi/N *(k'*n));
+
 %x = A(500,:) + A(1000,:); x = x’;
 y = A*mixed; %widmo sygnału
-figure; plot(y); title('y1(k)');
+figure; plot(y); title('y1(k)'), pause;
 
 % Modyfikacja wyniku
-s = 1700;
-e = length(mixed) - 10000;
+s = 1700;                       %od
+e = length(mixed) - 10000;      %do
 y(s:e,1) = zeros(e-s+1,1);
-figure; plot(y); title('y2(k)');
+figure; plot(y); title('y2(k)'), pause;
 
 
 figure; plot(mosquito); title('mosquito(n)');
