@@ -2,16 +2,11 @@ clear all; close all; clc; format long;
 
 A = [6, 1, 2; 5, 7, 1; 8, 9, 0];
 
-D = NaN(size(A));
+D1 = get_all_minors(A)
 
-for c=1:size(A,1)
-  for r=1:size(A,2)
-    D(c,r) = det(A([1:c-1 c+1:end],[1:r-1 r+1:end]));
-  end
-end
+D2 = get_all_minors_rec(A, zeros(size(A)), 1, 1)
 
-D = D';
 
-A_inverse = 1/(det(A)) * D
+A_inverse1 = 1/(det(A)) * D1
+A_inverse2 = 1/(det(A)) * D2
 inv(A)
-,

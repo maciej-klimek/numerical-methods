@@ -10,7 +10,7 @@ x2 = A\b
 x3 = pinv(A)*b
 
 b_back_inverse = A*x1
-b_back_optinal = A*x2
+b_back_optimal = A*x2
 b_back_pseudoinverse = A*x2
 
 if x1 == x2 == x3
