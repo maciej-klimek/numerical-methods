@@ -1,11 +1,11 @@
 % approx_krata.m
-close all; clear all;
+close all; clear all; clc
 
 % Generacja/wczyranie obrazka
 
 N = 512; Nstep = 32;
 [img, cmap] = imread('Lena512.bmp'); img = double(img); % Lena
-%img = zeros(N,N);                                      % czarny kwadrat
+img = zeros(N,N);                                      % czarny kwadrat
 if(0) % opcjonalna biala siatka
   for i=Nstep:Nstep:N-Nstep, img(i-1:i+1,1:N) = 255*ones(3,N); end
   for j=Nstep:Nstep:N-Nstep, img(1:N,j-1:j+1) = 255*ones(N,3); end
@@ -40,7 +40,6 @@ aest = aest1;                        % wybor rozwiazania
 r = 0:N/2;                           % wybrane promienie
 R = polyval( aest, r);               % R=f(r) wielomianu znieksztalcen
 figure; subplot(121); plot(r,R), title('R=f(r)');
-ainv = polyfit( R, r, 3),            % wspolczynniki wielomiany odwrotnego
 ainv = polyfit( R, r, 3),            % wspolczynniki wielomiany odwrotnego
 subplot(122); plot(R,r), title('r=g(R)'); pause
 
