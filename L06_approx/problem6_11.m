@@ -7,8 +7,8 @@ syms t x;
 f_e = exp(-t^2);
 f_integral = int(f_e, 0, x);
 f_sym = (2/sqrt(pi)) * f_integral
-f_taylor = taylor(f_sym, x)
 
+f_taylor = taylor(f_sym, x)
 f_sym = matlabFunction(f_sym);
 
 % wspólczynniki A i B dla M = 2, N = 2
@@ -22,7 +22,7 @@ B3_values =[0, 3/10, 0, 1]
 pade_2 = (poly2sym(A3_values))/(poly2sym(B3_values))
 
 
-X = -30:0.1:30;
+X = -20:0.1:20;
 
 pause;
 
