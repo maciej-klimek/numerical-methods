@@ -11,6 +11,3 @@ equations = [w1+w2+w3 == 2, w1*x(1) + w2*x(2) + w3*x(3) == 0, ...
 
 sol = solve(equations, [w1,w2,w3]);
 display(sol);
-
-miro = imread("Zad7_11.png");
-imshow(miro);
