@@ -6,7 +6,7 @@ syms x;
 
 f_origin_sym = (1+x^2)^-1
 f2_taylor_sym = taylor(f_origin_sym, x)
-f3_pade_sym = pade(f_origin_sym,"Order", [4, 4])
+f3_pade_sym = pade(f_origin_sym,"Order", [2, 2])
 
 f1_origin_n = matlabFunction(f_origin_sym);
 f2_taylor_n = matlabFunction(f2_taylor_sym);
