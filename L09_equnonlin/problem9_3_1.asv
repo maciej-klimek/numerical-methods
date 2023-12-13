@@ -1,0 +1,71 @@
+clear all; close all;
+
+% Miejsca zerowe dla każdej funkcji
+deg_45 = [2, 3];
+deg_5 = [1, 5];
+deg_80 = [-2, 1];
+
+% Funkcje i ich pochodne
+f_45 = @(x) tan(deg2rad(45))/2 * (x - deg_45(1)) .* (x - deg_45(2));
+f_5 = @(x) tan(deg2rad(5))/2 * (x - deg_5(1)) .* (x - deg_5(2));
+f_80 = @(x) tan(deg2rad(80))/2 * (x - deg_80(1)) .* (x - deg_80(2));
+f_sin = @(x) sin(x);   
+
+% Pochodne funkcji
+df_45 = @(x) 2 * tan(deg2rad(45))/2 * x + tan(deg2rad(45))/2 * sum(deg_45);
+df_5 = @(x) 2 * tan(deg2rad(5))/2 * x + tan(deg2rad(5))/2 * sum(deg_5);
+df_80 = @(x) 2 * tan(deg2rad(80))/2 * x + tan(deg2rad(80))/2 * sum(deg_80);
+df_sin = @(x) cos(x);
+
+
+disp("Wyniki dla tolerancji: ");
+tolerance = 0.00000001
+
+it_sin = 1;
+it_5_10 = 1;
+it_45 = 1;
+it_80 = 1;
+
+regula_falsi_45 = 0;
+regula_falsi_5 = 0;
+regula_falsi_80 = 0;
+regula_falsi_sin = 0;
+
+x_45 = 2;
+x_80 = 1;
+x_5_10 = 1;
+
+
+while (abs(regula_falsi_sin(end)-pi)) > tolerance
+    it_sin = it_sin + 1;
+    regula_falsi_sin = nonlinsolvers(f_sin, df_sin, pi-pi/5, pi+pi/5, 'regula-falsi', it_sin);
+end
+disp('Osiągnięto wymaganą dokładność dla sinusa. Liczba iteracji: ');
+disp(it_sin);
+
+
+while (abs(regula_falsi_80(end)-x_80)) > tolerance
+    it_80 = it_80 + 1;
+    regula_falsi_80 = nonlinsolvers(f_80, df_80, 0, 2.5, 'regula-falsi', it_80);
+end
+disp('Osiągnięto wymaganą dokładność dla nachylenia 80. Liczba iteracji: ');
+disp(it_80);
+
+
+while (abs(regula_falsi_45(end)-x_45)) > tolerance
+    it_45 = it_45 + 1;
+    regula_falsi_45 = nonlinsolvers(f_45, df_45, 1, 2.5, 'regula-falsi', it_45);
+end
+disp('Osiągnięto wymaganą dokładność dla nachylenia 45. Liczba iteracji: ');
+disp(it_45);
+
+
+figure;
+subplot(2, 2, 1);
+plot(1:it_sin, regula_falsi_sin, "bo-"), xlabel('iter'); title('sinus');
+subplot(2, 2, 2);
+plot(1:it_5_10, regula_falsi_5, "bo-"), xlabel('iter'); title('5_10');
+subplot(2, 2, 3);
+plot(1:it_45, regula_falsi_45, "bo-"), xlabel('iter'); title('45');
+subplot(2, 2, 4);
+plot(1:it_80, regula_falsi_80, "bo-"), xlabel('iter'); title('80');
