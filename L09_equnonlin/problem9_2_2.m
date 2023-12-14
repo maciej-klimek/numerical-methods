@@ -8,12 +8,13 @@ deg_5 = [1, 5];
 deg_80 = [-2, 1];
 
 f_5 = @(x) tan(deg2rad(5))/2 * (x - deg_5(1)) .* (x - deg_5(2));
-f_45 = @(x) tan(deg2rad(45))/2 * (x - deg_45(1)) .* (x - deg_45(2));
+f_45 = @(x) tan(deg2rad(45))/2 * (x - deg_45(1)) .* (x - deg_45(2));        % Deklaracja funkcji
 f_80 = @(x) tan(deg2rad(80))/2 * (x - deg_80(1)) .* (x - deg_80(2));
 
-df_5 = @(x) 2 * tan(deg2rad(5))/2 * x + tan(deg2rad(5))/2 * sum(deg_5);
-df_45 = @(x) 2 * tan(deg2rad(45))/2 * x + tan(deg2rad(45))/2 * sum(deg_45);
-df_80 = @(x) 2 * tan(deg2rad(80))/2 * x + tan(deg2rad(80))/2 * sum(deg_80);
+df_5 = @(x) 2 * tan(deg2rad(5))/2 * x - tan(deg2rad(5))/2 * sum(deg_5);
+df_45 = @(x) 2 * tan(deg2rad(45))/2 * x - tan(deg2rad(45))/2 * sum(deg_45);     % Deklaracja pochodnych
+df_80 = @(x) 2 * tan(deg2rad(80))/2 * x - tan(deg2rad(80))/2 * sum(deg_80);
+
 
 x = linspace(-5, 5, 100);
 

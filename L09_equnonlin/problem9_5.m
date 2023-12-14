@@ -13,9 +13,9 @@ f_45 = @(x) tan(deg2rad(45))/2 * (x - deg_45(1)) .* (x - deg_45(2));        % De
 f_80 = @(x) tan(deg2rad(80))/2 * (x - deg_80(1)) .* (x - deg_80(2));
 
 df_sin = @(x) cos(x);
-df_5 = @(x) 2 * tan(deg2rad(5))/2 * x + tan(deg2rad(5))/2 * sum(deg_5);
-df_45 = @(x) 2 * tan(deg2rad(45))/2 * x + tan(deg2rad(45))/2 * sum(deg_45); % Deklaracja pochodnych
-df_80 = @(x) 2 * tan(deg2rad(80))/2 * x + tan(deg2rad(80))/2 * sum(deg_80);
+df_5 = @(x) 2 * tan(deg2rad(5))/2 * x - tan(deg2rad(5))/2 * sum(deg_5);
+df_45 = @(x) 2 * tan(deg2rad(45))/2 * x - tan(deg2rad(45))/2 * sum(deg_45);     % Deklaracja pochodnych
+df_80 = @(x) 2 * tan(deg2rad(80))/2 * x - tan(deg2rad(80))/2 * sum(deg_80);
 
 tolerance = 0.00001;
 
@@ -29,34 +29,31 @@ newton_raphson_5 = 0;
 newton_raphson_45 = 0;
 newton_raphson_80 = 0;
 
-x_5 = 5;
-x_45 = 3;
-x_80 = -2;
 
-while (abs(newton_raphson_sin(end)-pi)) > tolerance
+while abs(newton_raphson_sin(end)-pi) > tolerance 
     it_sin = it_sin + 1;
     newton_raphson_sin = nonlinsolvers(f_sin, df_sin, pi-pi/5, pi+pi/5, 'newton-raphson', it_sin);
 end
 disp('Osiągnięto wymaganą dokładność dla sinusa. Liczba iteracji: ');
 disp(it_sin);
 
-while (abs(newton_raphson_5(end)-x_5)) > tolerance
+while abs(newton_raphson_5(end)-deg_5(1)) > tolerance && abs(newton_raphson_5(end)-deg_5(2)) > tolerance
     it_5 = it_5 + 1;
-    newton_raphson_5 = nonlinsolvers(f_5, df_5, 3, 7, 'newton-raphson', it_5);
+    newton_raphson_5 = nonlinsolvers(f_5, df_5, 0, 0, 'newton-raphson', it_5);
 end
 disp('Osiągnięto wymaganą dokładność dla nachylenia 5/10. Liczba iteracji: ');
 disp(it_5);
 
-while (abs(newton_raphson_45(end)-x_45)) > tolerance
+while abs(newton_raphson_45(end)-deg_45(1)) > tolerance && abs(newton_raphson_45(end)-deg_45(2)) > tolerance
     it_45 = it_45 + 1;
-    newton_raphson_45 = nonlinsolvers(f_45, df_45, 2.5, 6, 'newton-raphson', it_45);
+    newton_raphson_45 = nonlinsolvers(f_45, df_45, 0, 0, 'newton-raphson', it_45);
 end
 disp('Osiągnięto wymaganą dokładność dla nachylenia 45. Liczba iteracji: ');
 disp(it_45);
 
-while (abs(newton_raphson_80(end)-x_80)) > tolerance
+while abs(newton_raphson_80(end)-deg_80(1)) > tolerance && abs(newton_raphson_80(end)-deg_80(2)) > tolerance
     it_80 = it_80 + 1;
-    newton_raphson_80 = nonlinsolvers(f_80, df_80, -3, 1, 'newton-raphson', it_80);
+    newton_raphson_80 = nonlinsolvers(f_80, df_80, 0, 0, 'newton-raphson', it_80);
 end
 disp('Osiągnięto wymaganą dokładność dla nachylenia 80. Liczba iteracji: ');
 disp(it_80);
