@@ -1,6 +1,6 @@
 #include <math.h>
-
-#define M_PI 3.1415926536897932384626
+#include <stdio.h>
+// #define M_PI 3.1415926536897932384626
 #define K1 0.6072529350088812561694
 
 int main(int argc, char **argv)
@@ -42,5 +42,4 @@ int main(int argc, char **argv)
     printf("    //get sign. for other architectures, you might want to use the more portable version\n");
     printf("    //d = z>=0 ? 0 : -1;\n    tx = x - (((y>>k) ^ d) - d);\n    ty = y + (((x>>k) ^ d) - d);\n");
     printf("    tz = z - ((cordic_ctab[k] ^ d) - d);\n    x = tx; y = ty; z = tz;\n  }  \n *c = x; *s = y;\n}\n");
-    
 }

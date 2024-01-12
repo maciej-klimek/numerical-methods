@@ -1,5 +1,6 @@
 #include "cordic-32bit.h"
 #include <math.h> // for testing only!
+#include <stdio.h>
 
 //Print out sin(x) vs fp CORDIC sin(x)
 int main(int argc, char **argv)
@@ -11,7 +12,7 @@ int main(int argc, char **argv)
     {
           p = (i/50.0)*M_PI/2;        
        // use 32 iterations
-          cordic32b((p*MUL), &s, &c, 32);
+          cordic((p*MUL), &s, &c, 32);
        // these values should be nearly equal
           printf("%f : %f\n", s/MUL, sin(p));
     }       

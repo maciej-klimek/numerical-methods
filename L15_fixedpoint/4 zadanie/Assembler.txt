@@ -1,0 +1,88 @@
+.LC0:
+        .string "Podaj pierwsza liczbe: "
+.LC1:
+        .string "%lf"
+.LC2:
+        .string "Podaj druga liczbe: "
+.LC4:
+        .string "Iloraz: %.2f\n"
+.LC5:
+        .string "Nie mo\305\274na dzieli\304\207 przez zero."
+.LC6:
+        .string "Suma: %.2f\n"
+.LC7:
+        .string "Roznica: %.2f\n"
+.LC8:
+        .string "Iloczyn: %.2f\n"
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 48
+        mov     edi, OFFSET FLAT:.LC0
+        mov     eax, 0
+        call    printf
+        lea     rax, [rbp-40]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:.LC1
+        mov     eax, 0
+        call    __isoc99_scanf
+        mov     edi, OFFSET FLAT:.LC2
+        mov     eax, 0
+        call    printf
+        lea     rax, [rbp-48]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:.LC1
+        mov     eax, 0
+        call    __isoc99_scanf
+        movsd   xmm1, QWORD PTR [rbp-40]
+        movsd   xmm0, QWORD PTR [rbp-48]
+        addsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-8], xmm0
+        movsd   xmm0, QWORD PTR [rbp-40]
+        movsd   xmm1, QWORD PTR [rbp-48]
+        subsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-16], xmm0
+        movsd   xmm1, QWORD PTR [rbp-40]
+        movsd   xmm0, QWORD PTR [rbp-48]
+        mulsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-24], xmm0
+        movsd   xmm0, QWORD PTR [rbp-48]
+        pxor    xmm1, xmm1
+        ucomisd xmm0, xmm1
+        jp      .L6
+        pxor    xmm1, xmm1
+        ucomisd xmm0, xmm1
+        je      .L2
+.L6:
+        movsd   xmm0, QWORD PTR [rbp-40]
+        movsd   xmm1, QWORD PTR [rbp-48]
+        divsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-32], xmm0
+        mov     rax, QWORD PTR [rbp-32]
+        movq    xmm0, rax
+        mov     edi, OFFSET FLAT:.LC4
+        mov     eax, 1
+        call    printf
+        jmp     .L4
+.L2:
+        mov     edi, OFFSET FLAT:.LC5
+        call    puts
+.L4:
+        mov     rax, QWORD PTR [rbp-8]
+        movq    xmm0, rax
+        mov     edi, OFFSET FLAT:.LC6
+        mov     eax, 1
+        call    printf
+        mov     rax, QWORD PTR [rbp-16]
+        movq    xmm0, rax
+        mov     edi, OFFSET FLAT:.LC7
+        mov     eax, 1
+        call    printf
+        mov     rax, QWORD PTR [rbp-24]
+        movq    xmm0, rax
+        mov     edi, OFFSET FLAT:.LC8
+        mov     eax, 1
+        call    printf
+        mov     eax, 0
+        leave
+        ret
