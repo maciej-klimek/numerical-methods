@@ -1,0 +1,62 @@
+.LC2:
+        .string "wynik 1: %.2f\n"
+.LC3:
+        .string "adres: %p\n"
+.LC4:
+        .string "wynik 2: %.2f\n"
+.LC5:
+        .string "adres poprzedni: %p\n"
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 32
+        movsd   xmm0, QWORD PTR .LC0[rip]
+        movsd   QWORD PTR [rbp-8], xmm0
+        movsd   xmm0, QWORD PTR .LC1[rip]
+        movsd   QWORD PTR [rbp-16], xmm0
+        movsd   xmm0, QWORD PTR [rbp-8]
+        addsd   xmm0, QWORD PTR [rbp-16]
+        movsd   QWORD PTR [rbp-32], xmm0
+        lea     rax, [rbp-32]
+        mov     QWORD PTR [rbp-24], rax
+        add     QWORD PTR [rbp-24], 8
+        movsd   xmm0, QWORD PTR [rbp-8]
+        mulsd   xmm0, QWORD PTR [rbp-16]
+        mov     rax, QWORD PTR [rbp-24]
+        movsd   QWORD PTR [rax], xmm0
+        mov     rax, QWORD PTR [rbp-32]
+        movq    xmm0, rax
+        mov     edi, OFFSET FLAT:.LC2
+        mov     eax, 1
+        call    printf
+        lea     rax, [rbp-32]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:.LC3
+        mov     eax, 0
+        call    printf
+        mov     rax, QWORD PTR [rbp-24]
+        mov     rax, QWORD PTR [rax]
+        movq    xmm0, rax
+        mov     edi, OFFSET FLAT:.LC4
+        mov     eax, 1
+        call    printf
+        mov     rax, QWORD PTR [rbp-24]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:.LC3
+        mov     eax, 0
+        call    printf
+        mov     rax, QWORD PTR [rbp-24]
+        sub     rax, 8
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:.LC5
+        mov     eax, 0
+        call    printf
+        mov     eax, 0
+        leave
+        ret
+.LC0:
+        .long   0
+        .long   1076363264
+.LC1:
+        .long   0
+        .long   1076756480

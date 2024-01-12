@@ -1,3 +1,0 @@
-C:/Users/nosta/CLionProjects/Zadanie4_C/cmake-build-debug/CMakeFiles/Zadanie4_C.dir
-C:/Users/nosta/CLionProjects/Zadanie4_C/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/nosta/CLionProjects/Zadanie4_C/cmake-build-debug/CMakeFiles/rebuild_cache.dir
