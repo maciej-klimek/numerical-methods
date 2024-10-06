@@ -16,26 +16,27 @@ df_45 = @(x) 2 * tan(deg2rad(45))/2 * x - tan(deg2rad(45))/2 * sum(deg_45);     
 df_80 = @(x) 2 * tan(deg2rad(80))/2 * x - tan(deg2rad(80))/2 * sum(deg_80);
 
 
-x = linspace(-5, 5, 100);
+x = linspace(-10, 10, 100);
 
 figure;
 
 subplot(1, 3, 1);
 plot(x, f_5(x), 'b-', x, df_5(x), 'r-');
+axis("padded");
 title('5-10 stopni'); xlabel('x'); grid on;
 legend('Funkcja z nachyleniem 5 stopni', 'Jej pochodna');
 
 subplot(1, 3, 2);
 plot(x, f_45(x), 'b-', x, df_45(x), 'r-');
+axis("padded");
 title('45 stopni'); xlabel('x'); grid on;
 legend('Funkcja z nachyleniem 45 stopni', 'Jej pochodna');
 
 subplot(1, 3, 3);
 plot(x, f_80(x), 'b-', x, df_80(x), 'r-');
+axis("padded");
 title('80 stopni'); xlabel('x'); grid on;
 legend('Funkcja z nachyleniem 80 stopni', 'Jej pochodna');
-
-pause;
 
 tolerance = 0.00001
 
@@ -52,6 +53,8 @@ bisection_80 = 0;
 x_5 = 1;
 x_45 = 2;
 x_80 = 1;
+
+pause;
 
 while (abs(bisection_5(end)-x_5)) > tolerance
     it_5 = it_5 + 1;
@@ -74,14 +77,26 @@ end
 disp('Osiągnięto wymaganą dokładność dla nachylenia 80 stopni. Liczba iteracji: ');
 disp(it_80);
 
-
 figure;
 subplot(1, 3, 1);
 plot(1:it_5, bisection_5, "bo-"), xlabel('iter'); title('Parabola o nachylniu 5 stopni');
+grid on;
 subplot(1, 3, 2);
 plot(1:it_45, bisection_45, "bo-"), xlabel('iter'); title('Parabola o nachylniu 45 stopni');
+grid on;
 subplot(1, 3, 3);
 plot(1:it_80, bisection_80, "bo-"), xlabel('iter'); title('Parabola o nachylniu 80 stopni');
+grid on;
+
+
+pause;
+figure;
+plot([5, 45, 80], [length(bisection_5), length(bisection_45), length(bisection_80)], "ro--", 'MarkerSize', 10);
+axis("padded");
+title("Zależność ilości konieczych iteracji od nachylenia funkcji: ");
+xlabel("Nachylenie w stopniach");
+ylabel("Liczba iteracji");
+grid on;
 
 
 

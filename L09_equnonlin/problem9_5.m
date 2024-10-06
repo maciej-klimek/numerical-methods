@@ -1,7 +1,7 @@
 % METODA NEWTONA-RAPHSONA
 
 
-clear all; close all;
+clear all; close all; clc;
 
 deg_5 = [1, 5];
 deg_45 = [2, 3];    % Miejsca zerowe dla każdej funkcji
@@ -28,7 +28,6 @@ newton_raphson_sin = 0;
 newton_raphson_5 = 0;
 newton_raphson_45 = 0;
 newton_raphson_80 = 0;
-
 
 while abs(newton_raphson_sin(end)-pi) > tolerance 
     it_sin = it_sin + 1;
@@ -63,9 +62,23 @@ figure;
 title("Metoda Newtona-Raphsona")
 subplot(2, 2, 1);
 plot(1:it_sin, newton_raphson_sin, "bo-"), xlabel('iter'); title('Sinus');
+grid on;
 subplot(2, 2, 2);
 plot(1:it_5, newton_raphson_5, "bo-"), xlabel('iter'); title('Parabola o nachylniu 5%');
+grid on;
 subplot(2, 2, 3);
 plot(1:it_45, newton_raphson_45, "bo-"), xlabel('iter'); title('Parabola o nachylniu 45%');
+grid on;
 subplot(2, 2, 4);
 plot(1:it_80, newton_raphson_80, "bo-"), xlabel('iter'); title('Parabola o nachylniu 80%');
+grid on;
+
+
+pause;
+figure;
+plot([5, 45, 80], [length(newton_raphson_5), length(newton_raphson_45), length(newton_raphson_80)], "ro--", 'MarkerSize', 10);
+axis("padded");
+title("Zależność ilości konieczych iteracji od nachylenia funkcji: ");
+xlabel("Nachylenie w stopniach");
+ylabel("Liczba iteracji");
+grid on;

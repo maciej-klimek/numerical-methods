@@ -1,7 +1,7 @@
 % METODA REGULA-FANSI
 
 
-clear all; close all;
+clear all; close all; clc;
 
 deg_5 = [1, 5];
 deg_45 = [2, 3];    % Miejsca zerowe dla każdej funkcji
@@ -68,9 +68,23 @@ disp(it_80);
 figure;
 subplot(2, 2, 1);
 plot(1:it_sin, regula_falsi_sin, "bo-"), xlabel('iter'); title('Sinus');
+grid on;
 subplot(2, 2, 2);
 plot(1:it_5, regula_falsi_5, "bo-"), xlabel('iter'); title('Parabola o nachylniu 5%');
+grid on;
 subplot(2, 2, 3);
 plot(1:it_45, regula_falsi_45, "bo-"), xlabel('iter'); title('Parabola o nachylniu 45%');
+grid on;
 subplot(2, 2, 4);
 plot(1:it_80, regula_falsi_80, "bo-"), xlabel('iter'); title('Parabola o nachylniu 80%');
+grid on;
+
+pause;
+
+figure;
+plot([5, 45, 80], [length(regula_falsi_5), length(regula_falsi_45), length(regula_falsi_80)], "ro--", 'MarkerSize', 10);
+axis("padded");
+title("Zależność ilości konieczych iteracji od nachylenia funkcji: ");
+xlabel("Nachylenie w stopniach");
+ylabel("Liczba iteracji");
+grid on;
